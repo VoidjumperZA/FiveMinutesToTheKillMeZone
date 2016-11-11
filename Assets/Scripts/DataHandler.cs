@@ -48,6 +48,8 @@ public class DataHandler : MonoBehaviour
     private TimeCounterScript _counter;
     private int _score;
 
+    [SerializeField]
+    private SanityBarHandler _sanityHandler;
     // Use this for initialization
     void Start()
     {
@@ -177,6 +179,7 @@ public class DataHandler : MonoBehaviour
         if (currentSanity < fullSanity)
         {
             currentSanity += pSanityIncrease;
+            _sanityHandler.UpdateSanity();
         }
     }
 
