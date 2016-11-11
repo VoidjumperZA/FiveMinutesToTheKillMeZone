@@ -105,7 +105,7 @@ public class PlayScript : MenuScreen
         {
             case Levels.TUTORIAL:
                 print("selected TUTORIAL");
-                //SceneManager.LoadScene("Test Scene");
+                SceneManager.LoadScene("TutorialScene");
                 //_menuHandler.SetScreen(_menuHandler._difficultyScreen, true);
                 PlayerPrefs.SetString("Difficulty", "Tutorial");
                 break;
@@ -117,7 +117,7 @@ public class PlayScript : MenuScreen
                 break;
             case Levels.TRAINING_GROUND:
                 print("selected TRAINING_GROUND");
-                //SceneManager.LoadScene("Dominick - Testbench");
+                SceneManager.LoadScene("Dominick - Testbench");
                 //_menuHandler.SetScreen(_menuHandler._difficultyScreen, true);
                 break;
             case Levels.BACK_TO_MENU:

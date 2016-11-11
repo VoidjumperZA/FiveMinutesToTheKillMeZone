@@ -35,11 +35,11 @@ public class NoHighscoreScript : MonoBehaviour {
                     case "Jump":
                         PlayerPrefs.SetString("Replay", "True");
                         Time.timeScale = 1f;
-                        SceneManager.LoadScene(6);
+                        SceneManager.LoadScene("Level_001");
                         break;
                     case "Fire1":
                         Time.timeScale = 1f;
-                        SceneManager.LoadScene(0);
+                        SceneManager.LoadScene("Menu4");
                         break;
                 }
                 pAxisToggle = true; //key is now 'down'
