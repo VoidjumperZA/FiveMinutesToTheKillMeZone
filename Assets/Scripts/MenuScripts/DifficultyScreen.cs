@@ -108,26 +108,15 @@ public class DifficultyScreen : MenuScreen
         {
             case Difficulty.EASY:
                 PlayerPrefs.SetString("Difficulty", "Easy");
-                switch (_playScript._highlightedLevel)
-                {
-                    case PlayScript.Levels.TUTORIAL:
-                        print("LOADING TUTORIAL");
-                        SceneManager.LoadScene("Test Scene");
-                        break;
-                    case PlayScript.Levels.MAIN_LEVEL:
-                        print("LOADING MAIN_LEVEL");
-                        SceneManager.LoadScene("Testplay Scene");
-                        break;
-                    case PlayScript.Levels.TRAINING_GROUND:
-                        SceneManager.LoadScene("Dominick - Testbench");
-                        break;
-                }
+                SceneManager.LoadScene("Level_001");
                 break;
             case Difficulty.MEDIUM:
                 PlayerPrefs.SetString("Difficulty", "Medium");
+                SceneManager.LoadScene("Level_001");
                 break;
             case Difficulty.HARD:
                 PlayerPrefs.SetString("Difficulty", "Hard");
+                SceneManager.LoadScene("Level_001");
                 break;
         }
     }
