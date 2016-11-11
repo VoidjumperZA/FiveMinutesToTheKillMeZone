@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private Respawning respawningSystem;
 
     private bool _grounded = false;
+    private bool alive = true;
     private Vector3 _spawnPosition;
     private Quaternion _spawnRotation;
 
@@ -112,23 +113,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void forcedMovement()
     {
-        //Forced Movement
-        if (_grounded)
+        if (alive == true)
         {
-            //_camera.transform.eulerAngles = transform.eulerAngles;
-            _camera.LookingNormal(_gameManager.CameraRotationTime);
+            //Forced Movement
+            if (_grounded)
+            {
+                //_camera.transform.eulerAngles = transform.eulerAngles;
+                _camera.LookingNormal(_gameManager.CameraRotationTime);
+            }
+            else
+            {
+                //Maybe make this a function in ChaseCamera
+                Vector3 newCameraRotation = transform.eulerAngles - new Vector3(-_gameManager.CameraRotationInAir, 0.0f, 0.0f);
+                _camera.LookingDown(newCameraRotation, _gameManager.CameraRotationTime);
+            }
+            if (forceMovement == true)
+            {
+                //Debug.Log("moving");
+                transform.Translate(new Vector3(0, 0, _gameManager.PlayerMovementSpeed) * Time.deltaTime, Space.Self);
+            }
         }
-        else
-        {
-            //Maybe make this a function in ChaseCamera
-            Vector3 newCameraRotation = transform.eulerAngles - new Vector3(-_gameManager.CameraRotationInAir, 0.0f, 0.0f);
-            _camera.LookingDown(newCameraRotation, _gameManager.CameraRotationTime);            
-        }
-        if (forceMovement == true)
-        {
-            //Debug.Log("moving");
-            transform.Translate(new Vector3(0, 0, _gameManager.PlayerMovementSpeed) * Time.deltaTime, Space.Self);
-        }
+        
     }
 
     public void Rotating(float pRotationValue)

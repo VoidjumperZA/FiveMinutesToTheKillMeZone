@@ -82,6 +82,7 @@ public class Respawning : MonoBehaviour
         else
         {
             Debug.Log("PERMADEATH");
+            playerMovement.SetForceMovement(false);
             displayDeathScreen();
         }
         
