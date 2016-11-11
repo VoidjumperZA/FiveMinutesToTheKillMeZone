@@ -68,7 +68,7 @@ public class HighscoreScript : MonoBehaviour {
     private void selectionAxisCommands()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Menu4");
     }
 
     private void Init()

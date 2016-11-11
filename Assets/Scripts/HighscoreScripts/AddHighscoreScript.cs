@@ -193,6 +193,6 @@ public class AddHighscoreScript : MonoBehaviour
 
         PlayerPrefs.SetString("Replay", "True");
         Time.timeScale = 1f;
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene("Level_001");
     }
 }
