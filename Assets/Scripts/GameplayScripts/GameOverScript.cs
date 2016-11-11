@@ -6,18 +6,22 @@ using UnityEngine.SceneManagement;
 public class GameOverScript : MonoBehaviour {
 
     [SerializeField]
-    private Text[] _optionTexts;
+    private Image[] _optionImageSelected;
 
-    private Text _selectedText;
+    [SerializeField]
+    private Image[] _optionImageUnselected;
+
+    private Image _selectedImage;
 
     private bool xAxisInUse = false;
     private bool selectionAxisInUse = false;
+    
 
     private int _index = 0;
 
     private void Start()
     {
-        _selectedText = _optionTexts[0];
+        _selectedImage = _optionImageSelected[0];
         HighlightText();
     }
 
@@ -62,18 +66,18 @@ public class GameOverScript : MonoBehaviour {
         {
             if (_index == 0)
             {
-                _index = _optionTexts.Length - 1;
+                _index = _optionImageSelected.Length - 1;
             }
             else
             {
                 _index--;
             }
-            _selectedText = _optionTexts[_index];
+            _selectedImage = _optionImageSelected[_index];
             HighlightText();
         }
         else if (Input.GetAxisRaw("Horizontal") == 1)//right
         {
-            if (_index == _optionTexts.Length - 1)
+            if (_index == _optionImageSelected.Length - 1)
             {
                 _index = 0;
             }
@@ -81,7 +85,7 @@ public class GameOverScript : MonoBehaviour {
             {
                 _index++;
             }
-            _selectedText = _optionTexts[_index];
+            _selectedImage = _optionImageSelected[_index];
             HighlightText();
         }
 
@@ -89,15 +93,17 @@ public class GameOverScript : MonoBehaviour {
 
     private void HighlightText()
     {
-        for (int i = 0; i < _optionTexts.Length; i++)
+        for (int i = 0; i < _optionImageSelected.Length; i++)
         {
-            if (_optionTexts[i] == _selectedText)
+            if (_optionImageSelected[i] == _selectedImage)
             {
-                _optionTexts[i].color = Color.cyan;
+                _optionImageSelected[i].enabled = false;
+                _optionImageUnselected[i].enabled = true;
             }
             else
             {
-                _optionTexts[i].color = Color.white;
+                //_optionImageSelected[i].enabled = true;
+               // _optionImageUnselected[i].enabled = false;
             }
         }
     }
@@ -108,12 +114,12 @@ public class GameOverScript : MonoBehaviour {
     {
         print("selectionAxisCommands");
         string name = "";
-        for (int i = 0; i < _optionTexts.Length - 1; i++)
+        for (int i = 0; i < _optionImageSelected.Length - 1; i++)
         {
-            name += _optionTexts[i].text;
+            //name += _optionImageSelected[i].text;
         }
 
-        if (_selectedText == _optionTexts[0])
+        if (_selectedImage == _optionImageSelected[0])
         {
             PlayerPrefs.SetString("Replay", "True");
             SceneManager.LoadScene("Level_001");
