@@ -132,6 +132,7 @@ public class HighscoreScript : MonoBehaviour {
         catch
         {
             print("not found");
+            return true;
         }
         
         foreach (KeyValuePair<string,int> item in _highscoreList)
@@ -169,8 +170,9 @@ public class HighscoreScript : MonoBehaviour {
 
     private static void LoadList()
     {
+        print(Application.persistentDataPath + "/highscore.dat");
         FileStream stream = new FileStream(Application.persistentDataPath + "/highscore.dat", FileMode.Open);
-
+        
         try
         {
             object list = _bf.Deserialize(stream);
