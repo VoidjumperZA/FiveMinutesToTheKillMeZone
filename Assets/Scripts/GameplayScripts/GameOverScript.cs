@@ -18,6 +18,7 @@ public class GameOverScript : MonoBehaviour {
     
 
     private int _index = 0;
+    private int menuOp = 0;
 
     private void Start()
     {
@@ -63,7 +64,7 @@ public class GameOverScript : MonoBehaviour {
     private void xAxisCommands()
     {
         if (Input.GetAxisRaw("Horizontal") == -1)//left
-        {
+        {/*
             if (_index == 0)
             {
                 _index = _optionImageSelected.Length - 1;
@@ -72,11 +73,12 @@ public class GameOverScript : MonoBehaviour {
             {
                 _index--;
             }
-            _selectedImage = _optionImageSelected[_index];
+            _selectedImage = _optionImageSelected[_index];*/
+            menuOp = 0;
             HighlightText();
         }
         else if (Input.GetAxisRaw("Horizontal") == 1)//right
-        {
+        {/*
             if (_index == _optionImageSelected.Length - 1)
             {
                 _index = 0;
@@ -85,7 +87,8 @@ public class GameOverScript : MonoBehaviour {
             {
                 _index++;
             }
-            _selectedImage = _optionImageSelected[_index];
+            _selectedImage = _optionImageSelected[_index];*/
+            menuOp = 1;
             HighlightText();
         }
 
@@ -93,19 +96,43 @@ public class GameOverScript : MonoBehaviour {
 
     private void HighlightText()
     {
+        Debug.Log("selectedImage: " + _selectedImage);
+
+        if (menuOp == 0)
+        {
+            _optionImageUnselected[0].enabled = false;
+            _optionImageSelected[0].enabled = true;
+            _optionImageUnselected[1].enabled = true;
+            _optionImageSelected[1].enabled = false;
+        }
+
+        if (menuOp == 1)
+        {
+            _optionImageUnselected[0].enabled = true;
+            _optionImageSelected[0].enabled = false;
+            _optionImageUnselected[1].enabled = false;
+            _optionImageSelected[1].enabled = true;
+        }
+
+
+
+        /*
+
         for (int i = 0; i < _optionImageSelected.Length; i++)
         {
+            //_optionImageSelected[i].enabled = false;
+            _optionImageUnselected[i].enabled = true;
             if (_optionImageSelected[i] == _selectedImage)
+            {
+                _optionImageUnselected[i].enabled = false;
+                _optionImageSelected[i].enabled = true;
+            }
+            else
             {
                 _optionImageSelected[i].enabled = false;
                 _optionImageUnselected[i].enabled = true;
             }
-            else
-            {
-                //_optionImageSelected[i].enabled = true;
-               // _optionImageUnselected[i].enabled = false;
-            }
-        }
+        }*/
     }
 
     //increment the menu depth of our cursor
